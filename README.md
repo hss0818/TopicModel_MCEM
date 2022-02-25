@@ -7,3 +7,5 @@ Source code for the MCMC-EM algorithm for topic model estimation, which is propo
 `MCEM.R` contains the main function for the MCMC-EM algorithm proposed in the paper. 
 
 `example.R` contains an example showing how to use the main function to make estimation.
+
+Author: Yinyin Chen and Shishuang He.
