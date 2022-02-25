@@ -1,6 +1,6 @@
 # TopicModel_MCEM
 
-Source code for the MCMC-EM algorithm for topic model estimation, which is proposed in the paper **Learning Topic Models: Identifiability and Finite-Sample Analysis** (https://arxiv.org/abs/2110.04232).
+Source code for the MCMC-EM algorithm for topic model estimation, which is proposed in the paper **Learning Topic Models: Identifiability and Finite-Sample Analysis** (https://arxiv.org/abs/2110.04232) by Yinyin Chen, Shishuang He, Yun Yang and Feng Liang.
 
 `MCEM_helper.cpp` contains the helper functions for the implementation of the main function. 
 
