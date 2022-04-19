@@ -26,8 +26,8 @@ Source code and data for the MCMC-EM algorithm for topic model estimation, which
 `run_taxi.R` implements the application to the New Yorks City taxi-trip dataset. With the parameters specified in the code, it takes about 18 minutes to run.
 
 Version of software and loaded packages:
-`R 4.0.3`
-`C++14`
+-`R 4.0.3`
+-`C++14`
 `Rcpp_1.0.8`
 `gtools_3.8.2`
 `Matrix_1.4-0`
