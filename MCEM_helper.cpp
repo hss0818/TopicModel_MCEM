@@ -154,7 +154,7 @@ double lkh_cal(const arma::sp_mat & D, const arma::mat& C, const arma::mat& W, c
   for(arma::sp_mat::const_iterator it = D.begin(); it != D.end(); ++it){
     i = it.row(); // Row position: word index
     j = it.col(); // Col position: document
-    x =  *it;    // Value: word frequent
+    x =  *it;    // Value: word frequency
     double u = dot(C.row(i),W.col(j));
     if (u < thr){
       u = thr;
