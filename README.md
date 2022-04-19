@@ -27,6 +27,7 @@ Source code and data for the MCMC-EM algorithm for topic model estimation, which
 
 Version of software and loaded packages:
 `R 4.0.3`
+`C++14`
 `Rcpp_1.0.8`
 `gtools_3.8.2`
 `Matrix_1.4-0`
