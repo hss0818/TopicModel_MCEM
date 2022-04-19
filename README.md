@@ -24,3 +24,10 @@ Source code and data for the MCMC-EM algorithm for topic model estimation, which
 `run_kos_nips.R` implements the application to the NIPS dataset and the Daily Kos dataset.
 
 `run_taxi.R` implements the application to the New Yorks City taxi-trip dataset.
+
+Version of loaded packages:
+`Rcpp_1.0.8`
+`gtools_3.8.2`
+`Matrix_1.4-0`
+`combinat_0.0-8`
+`here_1.0.1`
