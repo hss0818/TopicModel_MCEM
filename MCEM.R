@@ -1,13 +1,15 @@
 library(gtools) 
 library(Rcpp)
 
-
+## source helper functions written in C++
 sourceCpp('MCEM_helper.cpp')
 
 
-MCEM <- function(D, k, num_it = 50, gibbs_steps = 100, thin = 1, tol = 10^-9, alpha = rep(1, k), 
+## main function to implement MCMC-EM algorithm for topic model estimation
+## with log-likelihood reported in the run
+MCEM = function(D, k, num_it = 50, gibbs_steps = 100, thin = 1, tol = 10^-9, alpha = rep(1, k), 
                  log_step = 10, burn_in = 50, verbose=TRUE, C_0 = NULL){
-  # D: term-doc matrix (V by d)
+  # D: term-doc matrix (V by d), should be in the form of dgCMatrix
   # k: number of topics 
   # num_it: number of iterations for EM
   # gibbs_step: number of iterations in MCMC in each E-step
@@ -22,54 +24,60 @@ MCEM <- function(D, k, num_it = 50, gibbs_steps = 100, thin = 1, tol = 10^-9, al
   d = ncol(D) # number of docs
   V = nrow(D) # number of vocab
   
-  #### initialize C #####
+  #### initialize topic matrix C #####
   if (!is.null(C_0)){
     C_e = C_0
   }else{
     C_e = t(rdirichlet(k, rep(1,V)))
   }
   
+  ## initial log-likelihood
+  loglkh = lkh_cal(D, C_e, W) 
+  ## record the relative change of log-likelihood
+  diff = 0 
   
-  
-  loglkh = lkh_cal(D, C_e, W) # initial log-likelihood
-  diff = 0 # record the relative change of log-likelihood
   time = Sys.time()
 
   
   for (s in (1:num_it)){
+    ## initialize mixing matrix W
     W_0 = t(rdirichlet(d, alpha))
     
-    #### E step ######
-    # Gibbs sampling for Z and W ####
+    #### E step #####
+    ## Gibbs sampling for Z and W
     E_step_result = E_step(C = C_e, D = D, W = W_0, alpha = alpha,  
                            gibbs_steps =  gibbs_steps, thin = thin, 
                            burn_in = burn_in)
-    # print("finish the E step")
     C_mean = E_step_result$C_mean
     W_mean = E_step_result$W_mean
-    W = W_mean
+    ## estimator for mixing matrix W
+    W = W_mean 
 
     
     #### M step ####
     loglkh_old = loglkh
-    C_e = apply(C_mean,2, function(x) x/(sum(x)))
+    ## estimator for topic matrix C
+    C_e = apply(C_mean,2, function(x) x/(sum(x))) 
+    ## updated log-likelihood
     loglkh = lkh_cal(D, C_e, W)
     
+    ## print number of iterations, relative change of log-likelihood and running time
     if (verbose && s%%log_step == 0){
       new_time = Sys.time()
-      print(paste("iteration:", s, ", relative log-lkh difference:", round(diff/log_step,12), 
-                  ", time:", round(new_time-time,2)))
+      print(paste("iteration:", s, ", relative log-lkh difference:", round(diff / log_step, 12), 
+                  ", time:", round(new_time - time, 2)))
       time = new_time
       diff = 0 
-     
     }
     
+    ## relative change of log-likelihood in current iteration
     cur_diff = abs((loglkh - loglkh_old)/(loglkh_old))
+    ## cumulate the relative change
     diff = diff + cur_diff
     
+    ## stop the iteration if the relative change is less than tol
     if (cur_diff < tol){break}
   }
-
  
   return (list(C = C_e, W = W_mean))
 }
