@@ -79,6 +79,7 @@ MCEM = function(D, k, num_it = 50, gibbs_steps = 100, thin = 1, tol = 10^-9, alp
     if (cur_diff < tol){break}
   }
  
+  ## return the estimators for the topic matrix and mixing matrix
   return (list(C = C_e, W = W_mean))
 }
 
