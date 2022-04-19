@@ -4,7 +4,7 @@ Source code for the MCMC-EM algorithm for topic model estimation, which is propo
 
 ## Data
 
-`taxi_19.csv` contains discretized New York City taxi pickup and dropoff data in January 2019. The original dataset is from the webpage https://www1.nyc.gov/site/tlc/about/tlc-trip-record-data.page and downloaded via https://s3.amazonaws.com/nyc-tlc/trip+data/yellow_tripdata_2019-01.csv
+`taxi_19.csv` is the discretized New York City taxi-trip dataset in January 2019. The original file can be accessed from the webpage https://www1.nyc.gov/site/tlc/about/tlc-trip-record-data.page and downloaded via https://s3.amazonaws.com/nyc-tlc/trip+data/yellow_tripdata_2019-01.csv
 
 
 ## Code
