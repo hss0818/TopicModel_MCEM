@@ -7,6 +7,7 @@ using namespace Rcpp;
 
 //' draw sample from categorical distribution with parameter p
 //' using built-in uniform distribution sampler
+//' by comparing the uniform sample with cumulative sum of p
 // [[Rcpp::export]]
 unsigned int rmultinomial(const arma::vec& P){
   double u = R::runif(0, sum(P));
@@ -22,6 +23,7 @@ unsigned int rmultinomial(const arma::vec& P){
 
 
 //' draw sample from multinomial distribution with parameter (n,p)
+//' using categorical distribution sampler
 // [[Rcpp::export]]
 IntegerVector MultinomCalt(unsigned int n, arma::vec & ps) {
   IntegerVector res(ps.size());
@@ -55,7 +57,7 @@ Rcpp::List one_it(const arma::sp_mat & D, const arma::mat& C, const arma::mat W,
   unsigned int d = D.n_cols; // number of docs
   unsigned int k = C.n_cols; // number of topics
   
-  // initialize matrices and values
+  // initialize matrices and iterators
   arma::mat C_hat = arma::zeros<arma::mat>(V, k);
   arma::mat W_beta = arma::zeros<arma::mat>(k, d);
   arma::mat W_hat = arma::zeros<arma::mat>(k, d);
