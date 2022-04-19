@@ -21,9 +21,9 @@ Source code and data for the MCMC-EM algorithm for topic model estimation, which
 
 `example.R` contains an toy example showing how to use the main function to make estimation.
 
-`run_kos_nips.R` implements the application to the NIPS dataset and the Daily Kos dataset.
+`run_kos_nips.R` implements the application to the Daily Kos dataset and the NIPS dataset. With the parameters specified in the code, it takes about 9 minutes to run for the Daily Kos dataset, and 160 minutes for the NIPS dataset on a normal laptop.
 
-`run_taxi.R` implements the application to the New Yorks City taxi-trip dataset.
+`run_taxi.R` implements the application to the New Yorks City taxi-trip dataset. With the parameters specified in the code, it takes about 18 minutes to run.
 
 Version of software and loaded packages:
 `R 4.0.3`
