@@ -19,7 +19,7 @@ Source code and data for the MCMC-EM algorithm for topic model estimation, which
 
 `MCEM_k.R` contains the main function for the MCMC-EM algorithm. The log-likelihood is not calculated in the process.
 
-`example.R` contains an toy example showing how to use the main function to make estimation.
+`example.R` contains a toy example showing how to use the main function to make estimation.
 
 `run_kos_nips.R` implements the application to the Daily Kos dataset and the NIPS dataset. With the parameters specified in the code, it takes about 9 minutes to run for the Daily Kos dataset, and 160 minutes for the NIPS dataset on a normal laptop.
 
